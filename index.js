@@ -5,6 +5,13 @@ const bodyParser = require("body-parser"); // body-parser is used for parsing in
 const morgan = require("morgan"); // morgan is for logging incoming requests
 const app = express();
 const router = require("./router");
+const mongoose = require("mongoose");
+
+// DB setup
+mongoose.connect("mongodb://127.0.0.1:27107/auth", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // App setup
 // middlewares in express - to process incoming request
