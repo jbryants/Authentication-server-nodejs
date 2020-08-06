@@ -8,12 +8,15 @@ const router = require("./router");
 const mongoose = require("mongoose");
 
 // DB setup
-mongoose.connect("mongodb://127.0.0.1:27107/auth", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect("mongodb://localhost/auth", { useNewUrlParser: true });
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  // we're connected!
+  console.log("connected to auth db.");
 });
 
-// App setup
 // middlewares in express - to process incoming request
 // app.use() to register middlewares.
 app.use(morgan("combined"));
